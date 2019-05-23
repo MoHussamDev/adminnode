@@ -1,0 +1,32 @@
+extends ../adminLayout
+block content
+    // Begin Page Content
+    .container-fluid
+        h1.heading adduser
+        if errorMessage
+            .alert.alert-danger=errorMessage
+        .row 
+            .col-md-6   
+                form(method="POST" action="addnewuser" enctype="multipart/form-data" )#addUser
+                    div.controlForm
+                        label Firstname
+                        input(type="text" placeholder="firstname" name="firstname")
+                    div.controlForm
+                        label Lastname
+                        input(type="text" placeholder="lastname" name="lastname")
+                    div.controlForm
+                        label E-mail
+                        input(type="text" placeholder="email" name="email")#email
+                    div.controlForm
+                        label Password
+                        input(type="password" placeholder="password" name="password")#password
+                    div.controlForm
+                        label Retype Password
+                        input(type="password" placeholder="password" name="retypePassword")
+                    div.controlForm
+                        label Image
+                        input(type="file" placeholder="Image" name="file")#imageUpload
+                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                    input(type="submit" value ="Add").btn.btn-primary
+            .col-md-6 
+                 img(src="/images/avatar.jpg" style="width:250px; border:5px white solid;box-shadow: -8px 6px 19px -17px rgba(0,0,0,0.75);")#imgDisplay

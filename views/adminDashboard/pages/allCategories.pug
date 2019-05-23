@@ -1,0 +1,40 @@
+extends ../adminLayout
+block content
+    // Begin Page Content
+    .container-fluid
+
+        if catMesg && catMesg.length > 0
+                .alert.alert-success=catMesg
+        .row
+            .col-md-6
+                h1 Products
+            .col-md-4
+
+                form(method="POST" action="allusers").row
+                    input(type="text"  name="nameSearch" placeholder="search" style="margin-right:1rem; height:30px;")
+                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                    Button(type="submit"  style="height:30px; padding:0;padding:0 5px; color:white;").btn.btn-primary search
+            .col-md-2
+                a(href='/admin/cat/add').btn.btn-primary Add Categories
+        table.table
+            thead
+                tr
+                    th(scope='col') #
+                    th(scope='col') name
+                    th(scope='col') desc
+                    th(scope='col') products
+                    th(scope='col') edit
+                    th(scope='col') delete
+            tbody
+                each cat in catAll
+                    tr
+                        th(scope='row')=cat.id
+                        td=cat.categoryName
+                        td=cat.categoryDesc
+                        td=cat.productCount
+                        td
+                            a(href=`edituser/${cat.id}`).btn.btn-success edit
+                        td
+                            form(method="POST" action=`cat/${cat.id}`)
+                                input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                                button(type="submit").btn.btn-danger delete

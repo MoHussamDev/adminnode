@@ -1,0 +1,31 @@
+extends ../adminLayout
+block content
+    // Begin Page Content
+    .container-fluid
+        h1.heading Add Product
+        if errorMessage
+            .alert.alert-danger=errorMessage
+        .row 
+            .col-md-6 
+                form(method="POST" action="add" enctype="multipart/form-data" )#addUser
+                    div.controlForm
+                        label Name
+                        input(type="text" placeholder="Product Name" name="productName")
+                    div.controlForm
+                        label Description
+                        textarea(type="text" placeholder="Description" name="productDesc")
+                    div.controlForm
+                        label Price
+                        input(type="text" placeholder="price" name="price")#price
+                    div.controlForm
+                        label Categories
+                        select(type="text" name="category")#select
+                            each cat in cats
+                                option(value=`${cat.id}`)=cat.categoryName
+                    div.controlForm
+                        label Image
+                        input(type="file" placeholder="Image" name="file")#imageUpload
+                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                    input(type="submit" value ="Add").btn.btn-primary
+            .col-md-6
+                 img(src="/images/avatar.jpg" style="width:250px; border:5px white solid;box-shadow: -8px 6px 19px -17px rgba(0,0,0,0.75);")#imgDisplay

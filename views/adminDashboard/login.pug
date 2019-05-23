@@ -1,0 +1,15 @@
+extends ./loginLayout
+block content
+    div.container-fluid
+        .container.d-flex.justify-content-center
+
+               form(method="post" action="login/is").loginform
+                    h1 login
+                    div.controlForm
+                        label Email
+                        input(type="text" placholder="email" name="email")
+                    div.controlForm
+                        label Password
+                        input(type="password" placholder="Password" name="password")
+                    input(type="hidden" name="_csrf" value= `${csrfToken}`)
+                    input(type="submit" value="login").loginBtn

@@ -1,0 +1,74 @@
+@mixin forms {
+    .controlForm{
+        width:20rem;
+        display: flex;
+        flex-direction: column;
+        padding-left:1rem;
+        padding-bottom:1rem;
+        margin-bottom:0.5rem;
+        label{
+            letter-spacing: 1px;
+            &.error{
+                margin-top: 0.4rem;
+               font-size:0.8rem;
+               color:darkred;
+               width:100%;
+            }
+        }
+        input{
+            padding-left:0.5rem;
+            &.error{
+               font-size:inherit;
+               width:100%;
+               height:inherit;
+               &:focus{
+                outline-color: darkred;
+               }
+            }
+        }
+    
+    }
+}
+
+.loginform{
+background-color: #fff;
+width:35rem;
+padding:1rem;
+padding-top:3rem;
+margin-bottom: 2rem;
+display: flex;
+align-items:center;
+justify-content: center;
+flex-direction: column;
+h1{
+  font-size:25px;
+}
+.controlForm{
+    display: flex;
+    flex-direction:column;
+    margin-bottom:1rem;
+    label{
+        font-size:13px;
+    }
+    input{
+        height:28px;
+    }
+}
+.loginBtn {
+    background-color: rgb(62, 130, 255);
+    width:8rem;
+    height:30px;
+    border:none;
+    color: white;
+}
+}
+#addUser{
+@include forms
+}
+#editUser{
+    @include forms
+}
+#changePassword{
+    @include forms
+}
+

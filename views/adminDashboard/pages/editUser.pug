@@ -1,0 +1,33 @@
+extends ../adminLayout
+block content
+    // Begin Page Content
+    .container-fluid
+        h1.heading Edit User 
+        if errorMessage
+            .alert.alert-danger=errorMessage
+        if flash && flash.length > 0
+            .alert.alert-success=flash
+        .row
+            .col-md-6
+                form(method="POST" action=`${userData.id}/update`)#editUser
+                    div.controlForm
+                        label Firstname
+                        input(type="text" value=`${userData.firstname}` name="firstname")
+                    div.controlForm
+                        label Lastname
+                        input(type="text" value=`${userData.lastname}`  name="lastname")
+                    div.controlForm
+                        label E-mail
+                        input(type="text" value=`${userData.email}`  name="email")
+
+                    a(href=`${userData.id}/changepassword` style="cursor:pointer; margin-right:1rem;").btn.btn-light Change Your Password
+                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                    input(type="hidden" name="id" value=`${userData.id}`)
+                    input(type="submit" value ="Update").btn.btn-primary
+            .col-md-6
+               h6 Profile Picture
+               img(src=`/${userData.image}` style="width:250px; border:5px white solid;box-shadow: -8px 6px 19px -17px rgba(0,0,0,0.75);")#dispUpImage
+               form(method="POST" enctype="multipart/form-data" action=`${userData.id}/changeimage` style="margin-top:1rem")
+                  input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                  input(type="file" name="file" style="display:block;")#updateImage
+                  input(type="submit" value="Change Display Image" style="font-size:12px; margin-top:1rem; cursor:pointer; color:white;").btn.btn-dark

@@ -1,0 +1,45 @@
+extends ../adminLayout
+block content
+    // Begin Page Content
+    .container-fluid
+
+        if productsFlash && productsFlash.length > 0
+                .alert.alert-success=productsFlash
+        .row
+            .col-md-6
+                h1 Products
+            .col-md-4
+
+                form(method="POST" action="allusers").row
+                    input(type="text"  name="nameSearch" placeholder="search" style="margin-right:1rem; height:30px;")
+                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                    Button(type="submit"  style="height:30px; padding:0;padding:0 5px; color:white;").btn.btn-primary search
+            .col-md-2
+                a(href='/admin/products/add').btn.btn-primary Add Product
+        table.table
+            thead
+                tr
+                    th(scope='col') #
+                    th(scope='col') image
+                    th(scope='col') name
+                    th(scope='col') desc
+                    th(scope='col') price
+                    th(scope='col') category
+                    th(scope='col') edit
+                    th(scope='col') delete
+            tbody
+                each product in productsAll
+                    tr
+                        th(scope='row')=product.id
+                        th
+                          img(src=`/${product.imageUrl ?product.imageUrl : 'images/avatar.jpg' }` style="width:25px;")
+                        td=product.productName
+                        td=product.productDesc
+                        td=product.price
+                        td=product.catName
+                        td 
+                            a(href=`edituser/${product.id}`).btn.btn-success edit
+                        td 
+                            form(method="POST" action=`deleteuser/${product.id}`)
+                               input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                               button(type="submit").btn.btn-danger delete

@@ -1,0 +1,23 @@
+extends ../adminLayout
+block content
+    // Begin Page Content
+    .container-fluid
+        h1.heading adduser
+        if errorMessage
+            .alert.alert-danger=errorMessage
+        .row 
+            .col-md-6   
+                form(method="POST" action="addcat" enctype="multipart/form-data" )#addUser
+                    div.controlForm
+                        label Category Name
+                        input(type="text" placeholder="category Name" name="catName")
+                    div.controlForm
+                        label Category Description
+                        textarea(name="catDesc", placeholder="Category Description", cols="30", rows="10")
+                    div.controlForm
+                        label Image
+                        input(type="file" placeholder="Image" name="file")#imageUpload
+                    input(type="hidden" name="_csrf" value=`${csrfToken}`)
+                    input(type="submit" value ="Add").btn.btn-primary
+            .col-md-6
+                 img(src="/images/avatar.jpg" style="width:250px; border:5px white solid;box-shadow: -8px 6px 19px -17px rgba(0,0,0,0.75);")#imgDisplay
