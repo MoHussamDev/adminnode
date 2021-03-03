@@ -23,7 +23,7 @@
     "node-sass": "^4.12.0",
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^1.19.0",
-    "pug": "2.0.0-beta11",
+    "pug": "3.0.1",
     "sequelize": "^5.8.5"
   }
 }
